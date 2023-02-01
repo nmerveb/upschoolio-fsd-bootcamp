@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Console", "UpSchool.Console\UpSchool.Console.csproj", "{DB262C9C-6BFB-4BEC-A137-597B235C139C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Console", "UpSchool.Console\UpSchool.Console.csproj", "{DB262C9C-6BFB-4BEC-A137-597B235C139C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Domain", "UpSchool.Domain\UpSchool.Domain.csproj", "{21D9418E-9F70-4715-81C7-FFD79D50A075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckySister.Console", "LuckySister.Console\LuckySister.Console.csproj", "{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DB262C9C-6BFB-4BEC-A137-597B235C139C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB262C9C-6BFB-4BEC-A137-597B235C139C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB262C9C-6BFB-4BEC-A137-597B235C139C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21D9418E-9F70-4715-81C7-FFD79D50A075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D9418E-9F70-4715-81C7-FFD79D50A075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D9418E-9F70-4715-81C7-FFD79D50A075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D9418E-9F70-4715-81C7-FFD79D50A075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
