@@ -20,6 +20,14 @@ namespace UpSchool.Console.FirstExample
         //private int TotalScore() { return Score1 + Score2 + Score3; }
         #endregion
 
+        public Student()
+        {
+
+        }
+        public Student(string firstName)
+        {
+            FirstName= firstName;
+        }
         public List<int> Scores { get; set; }
         public string TCID { get; set; } //interface icinde tanimladigimiz alanlari implemente ettigimiz siniflarda da tanimlamamiz gerekir, base siniflar icin bu gecerli degildir.
         public string GovermentId { get; set; }
