@@ -21,7 +21,11 @@ namespace PasswordGenerator.Console
         }
         public void GeneratePassword(int length)
         {
-
+            if (PasswordBase.Length == 0) 
+            {
+                System.Console.WriteLine("You said no to all questions, password cannot be created!");
+                return;
+            } 
             for(int i=0; i<length; i++)
             {
                 var randomIndex = _random.Next(PasswordBase.Length-1);

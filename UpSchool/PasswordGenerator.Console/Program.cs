@@ -1,4 +1,5 @@
 ﻿using PasswordGenerator.Console;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 Console.WriteLine("*********************************************************");
 Console.WriteLine("Welcome to the B E S T   P A S S W O R D   M A N A G E R ");
@@ -23,11 +24,19 @@ var includeSpecialCharacters = Console.ReadKey().KeyChar.ToString();
 passwordGenerate.AddPasswordBase(includeSpecialCharacters, Constants.SpecialCharacter);
 
 Console.WriteLine("\n How do you want to keep your password length?");
-var passwordLength =Convert.ToInt32(Console.ReadLine());
+var isNumber = int.TryParse(Console.ReadLine(), out int passwordLength);
+
+while (!isNumber)
+{
+    Console.WriteLine("Password length must be a number");
+   isNumber = int.TryParse(Console.ReadLine(), out passwordLength);
+}
+
 passwordGenerate.GeneratePassword(passwordLength);
 
 Console.WriteLine("*********************************************************");
 Console.WriteLine("G E N E R A T E D   P A S S W O R D: ");
 Console.WriteLine(passwordGenerate.GetPassword());
+Console.WriteLine("*********************************************************");
 
 
