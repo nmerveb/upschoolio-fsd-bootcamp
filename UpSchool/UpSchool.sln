@@ -5,11 +5,15 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Console", "UpSchool.Console\UpSchool.Console.csproj", "{DB262C9C-6BFB-4BEC-A137-597B235C139C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Domain", "UpSchool.Domain\UpSchool.Domain.csproj", "{21D9418E-9F70-4715-81C7-FFD79D50A075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Domain", "UpSchool.Domain\UpSchool.Domain.csproj", "{21D9418E-9F70-4715-81C7-FFD79D50A075}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckySister.Console", "LuckySister.Console\LuckySister.Console.csproj", "{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuckySister.Console", "LuckySister.Console\LuckySister.Console.csproj", "{A9164DAA-C341-43D5-AC6F-9BB0058BF0A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordGenerator.Console", "PasswordGenerator.Console\PasswordGenerator.Console.csproj", "{A91CC1C9-92E9-429A-8CD8-2BA7D3F7F308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordGenerator.Console", "PasswordGenerator.Console\PasswordGenerator.Console.csproj", "{A91CC1C9-92E9-429A-8CD8-2BA7D3F7F308}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UPSimplePasswordGenerator", "UPSimplePasswordGenerator\UPSimplePasswordGenerator.csproj", "{98224545-DBA5-4B46-826E-924C26B8D4A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Wasm", "UpSchool.Wasm\UpSchool.Wasm.csproj", "{6F19052D-E3AB-4125-97F6-4BDC2E450116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{A91CC1C9-92E9-429A-8CD8-2BA7D3F7F308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A91CC1C9-92E9-429A-8CD8-2BA7D3F7F308}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A91CC1C9-92E9-429A-8CD8-2BA7D3F7F308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98224545-DBA5-4B46-826E-924C26B8D4A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98224545-DBA5-4B46-826E-924C26B8D4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98224545-DBA5-4B46-826E-924C26B8D4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98224545-DBA5-4B46-826E-924C26B8D4A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F19052D-E3AB-4125-97F6-4BDC2E450116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F19052D-E3AB-4125-97F6-4BDC2E450116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F19052D-E3AB-4125-97F6-4BDC2E450116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F19052D-E3AB-4125-97F6-4BDC2E450116}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
