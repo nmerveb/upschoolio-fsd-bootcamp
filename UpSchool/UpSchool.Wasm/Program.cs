@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using UpSchool.Domain.Services;
 using UpSchool.Wasm;
+using UpSchool.Wasm.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+var titanicFluteApiUrl = builder.Configuration.GetConnectionString("TitanicFlute");
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
@@ -14,6 +19,11 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 //Toaster icin eklendi.
 builder.Services.AddBlazoredToast();
+
+//Dependecy Injection IToasterService proje icinde cagrilacaginda ToasterService'in cagrilmasini saglar.
+builder.Services.AddScoped<IToasterService, BlazoredToastService>();
+
+builder.Services.AddSingleton<IUrlHelperService>(new UrlHelperService(titanicFluteApiUrl));
 
 //Local Storage paketi icin 
 builder.Services.AddBlazoredLocalStorage(config =>
