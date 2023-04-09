@@ -12,9 +12,14 @@ namespace UpSchool.Wasm.Services
             _toastService = toastService;
         }
 
+        public void ShowError(string message)
+        {
+            _toastService.ShowError(message);
+        }
+
         public void ShowSuccess(string message)
         {
-            _toastService.ShowSuccess(message, x => x.Position=ToastPosition.BottomRight);
+            _toastService.ShowSuccess(message);
         }
     }
 }

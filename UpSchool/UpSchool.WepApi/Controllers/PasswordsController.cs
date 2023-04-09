@@ -11,6 +11,7 @@ namespace UpSchool.WepApi.Controllers
     {
         private readonly PasswordGenerator _passwordGenerator;
         private readonly GeneratePasswordDto _generatePasswordDto;
+        private static List<string> _passwords = new List<string>();  // static belirteci kullanmadigimiz degiskenler stateless tanimlanmis olurlar
 
         public PasswordsController()
         {
@@ -23,17 +24,37 @@ namespace UpSchool.WepApi.Controllers
             };
 
         }
+        
         [HttpGet] 
         public IActionResult GetPasswords()
         {
-            List<string> passwords = new List<string>();
-
-            for(int i =0; i<9 ; i++)
+            return Ok(_passwords);  //Kayitli passwordleri doner
+        }
+        
+        [HttpPost] 
+        public IActionResult Add(PasswordAddRequest addRequest)
+        {
+            if(_passwords.Any(p => p==addRequest.Password)) 
             {
-                passwords.Add(_passwordGenerator.Generate(_generatePasswordDto));
+                return BadRequest("The given password has already been saved before.");
             }
 
-            return Ok(passwords);
+            _passwords.Add(addRequest.Password);
+            
+            return NoContent();  
+        }
+
+        [HttpDelete("{password}")]
+        public IActionResult Delete(string password)
+        {
+            if (!_passwords.Any(p => p == password))
+            {
+                return BadRequest("The given password was not found.");
+            }
+
+            _passwords.Remove(password);
+
+            return NoContent();
         }
     }
 }
