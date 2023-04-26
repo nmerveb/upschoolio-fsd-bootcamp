@@ -10,5 +10,6 @@
         public string? Url { get; set; }
         public bool IsFavourite { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
+        public DateTimeOffset? LastModifiedOn { get; set; }
     }
 }

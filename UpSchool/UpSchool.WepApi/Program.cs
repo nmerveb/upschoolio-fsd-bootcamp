@@ -1,3 +1,5 @@
+using UpSchool.WepApi.AutoMapper.Profiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,8 @@ builder.Services.AddCors(options =>
         .SetIsOriginAllowed((host) => true)
         .AllowAnyHeader());
 });
+
+builder.Services.AddAutoMapper(typeof(AccountProfile));
 
 var app = builder.Build();
 
