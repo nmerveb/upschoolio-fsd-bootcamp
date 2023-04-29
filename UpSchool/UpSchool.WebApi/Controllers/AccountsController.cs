@@ -19,47 +19,20 @@ namespace UpSchool.WepApi.Controllers
             _mapper = mapper;
             _dbContext = dbContext;
         }
-
-        //private static List<Account> _accounts = new()
-        //{
-        //    new Account()
-        //    {
-        //        Id = new Guid("508f233c-52cc-4ac0-ba07-4ef5a2b066ed"),
-        //        UserName = "mrpickle",
-        //        Password = StringHelper.Base64Encode("123pickle123"),
-        //        IsFavourite = false,
-        //        CreatedOn = DateTimeOffset.Now,
-        //        Title = "UpSchool",
-        //        Url = "https://www.upschool.com"
-        //     },
-
-        //    new Account()
-        //    {
-        //        Id = new Guid("94fe5cb4-2667-4c3b-9fd4-9d70c16c60fa"),
-        //        UserName = "fullspeed@gmail.com",
-        //        Password = StringHelper.Base64Encode("123fullspeed123"),
-        //        IsFavourite = true,
-        //        CreatedOn = DateTimeOffset.Now,
-        //        Title = "Gmail",
-        //        Url = "https://www.google.com/intl/tr/gmail/about/"
-        //     },
-
-        //    new Account()
-        //    {
-        //        Id = new Guid("22fa4f12-0288-43d0-bde1-2bf62122201b"),
-        //        UserName = "movieguy",
-        //        Password = StringHelper.Base64Encode("123movieguy123"),
-        //        IsFavourite = false,
-        //        CreatedOn = DateTimeOffset.Now,
-        //        Title = "Sinemalar",
-        //        Url = "https://www.sinemalar.com"
-        //    }
-        //};
         
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string? searchKeyword)
         {
-            var accounts = _dbContext.Accounts.ToList();
+            var accounts = string.IsNullOrEmpty(searchKeyword)
+                ? 
+                _dbContext
+                    .Accounts
+                    .ToList()
+                : 
+                _dbContext
+                    .Accounts
+                     .Where(x => x.Title.Contains(searchKeyword))
+                     .ToList();
 
             var accountDtos = accounts.Select(account => AccountDto.MapFromAccount(account)); //Automapper performans yiyor?
   

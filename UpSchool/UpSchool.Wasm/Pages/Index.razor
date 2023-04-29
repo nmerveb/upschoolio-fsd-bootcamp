@@ -18,7 +18,7 @@
                     <hr />
                     <div class="d-flex flex-row">
                         <button class="btn btn-success " @onclick="@(() => NavigationManager.NavigateTo("/accounts/add"))">Add</button>
-                        <button class="btn btn-warning ms-2" @onclick="@(() => NavigationManager.NavigateTo("/accounts/add"))">Undo</button>
+                        <input type="text" @oninput=@SearchInputChange class="form-control w-25 ms-2" placeholder="Search" />
                     </div>
                     <hr />
                     <div class="row">
@@ -51,7 +51,7 @@
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">
                                             <button class="btn btn-info" @onclick="@(() => GoToEditPage(account.Id))">Edit</button>
-                                            <button class="btn btn-danger" @onclick="@(() => DeletePasswordAsync(account.Id))">Delete</button>
+                                            <button class="btn btn-danger" @onclick="@(() => DeleteAccountAsync(account.Id))">Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -69,14 +69,33 @@
 {
     List<AccountDto> accounts = new();
 
+    private string searchKeyword = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        accounts = await FetchAccountAsync()!;
+        accounts = await FetchAccountsAsync();
 
         await base.OnInitializedAsync();
     }
 
-    private Task<List<AccountDto>?> FetchAccountAsync()
+    private async Task SearchInputChange(ChangeEventArgs args)
+    {
+        if(args is not null && !string.IsNullOrEmpty(args.Value.ToString()))
+        {
+            searchKeyword = args.Value.ToString();
+
+            await OnSearchAsync();
+
+        }
+        else
+        {
+            searchKeyword = string.Empty;
+
+            accounts = await FetchAccountsAsync();
+        }
+    }
+
+    private Task<List<AccountDto>?> FetchAccountsAsync()
     {
         return HttpClient.GetFromJsonAsync<List<AccountDto>>("Accounts");
     }
@@ -84,6 +103,18 @@
     private void GoToEditPage(Guid id)
     {
         NavigationManager.NavigateTo($"/accounts/edit/{id}");
+    }
+
+    private async Task OnSearchAsync()
+    {
+        if (string.IsNullOrEmpty(searchKeyword))
+        {
+            return;
+        }
+
+        var searchedAccounts = await HttpClient.GetFromJsonAsync<List<AccountDto>>($"Accounts?searchKeyword={searchKeyword}");
+
+        accounts = searchedAccounts;
     }
 
     private void SetShowPassword(AccountDto accountDto)
@@ -101,7 +132,7 @@
         Console.WriteLine(accountDto.Password);
     }
 
-    private async Task DeletePasswordAsync(Guid id)
+    private async Task DeleteAccountAsync(Guid id)
     {
 
         var response = await HttpClient.DeleteAsync($"Accounts/{id}"); // api'da bulunan post islemine duser
@@ -116,6 +147,7 @@
         }
 
         ToastService.ShowError("An unexpected error occurred.");
+        return;
 
     }
 }

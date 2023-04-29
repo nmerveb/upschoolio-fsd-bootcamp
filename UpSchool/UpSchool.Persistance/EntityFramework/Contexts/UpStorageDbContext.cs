@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UpSchool.Domain.Entities;
 using UpSchool.Persistance.EntityFramework.Configurations;
+using UpSchool.Persistance.EntityFramework.Seeders;
 
 namespace UpSchool.Persistance.EntityFramework.Contexts
 {
@@ -17,7 +18,11 @@ namespace UpSchool.Persistance.EntityFramework.Contexts
         //Tablo olusturulurken Config icine yazdigimiz configlerin dikkate alinmasini soyledigimiz kisim
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Configurations
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
+
+            //Seeders
+            modelBuilder.ApplyConfiguration(new AccountSeeder());
 
             base.OnModelCreating(modelBuilder);
         }

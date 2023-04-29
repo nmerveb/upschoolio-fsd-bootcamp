@@ -12,7 +12,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //EntityFrameworkCore ile ilgili
-builder.Services.AddDbContext<UpStorageDbContext>(opt => opt.UseMySQL(builder.Configuration.GetConnectionString("MySQLDB")!)); //() arasina ilgili db'ye baglanti ayarlarini veririz.
+//builder.Services.AddDbContext<UpStorageDbContext>(opt => opt.UseMySQL(builder.Configuration.GetConnectionString("MySQLDB")!)); //() arasina ilgili db'ye baglanti ayarlarini veririz.
+
+//MariaDB ayarlari
+var mariaDbConnectionString = builder.Configuration.GetConnectionString("MariaDB")!;
+
+builder.Services.AddDbContext<UpStorageDbContext>(opt => opt.UseMySql(mariaDbConnectionString, ServerVersion.AutoDetect(mariaDbConnectionString)));
 
 builder.Services.AddCors(options =>
 {
