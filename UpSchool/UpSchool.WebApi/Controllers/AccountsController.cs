@@ -21,20 +21,36 @@ namespace UpSchool.WepApi.Controllers
         }
         
         [HttpGet]
-        public IActionResult GetAll(string? searchKeyword)
+        public IActionResult GetAll(bool isAscending, string? searchKeyword)
         {
-            var accounts = string.IsNullOrEmpty(searchKeyword)
-                ? 
-                _dbContext
-                    .Accounts
-                    .ToList()
-                : 
-                _dbContext
-                    .Accounts
-                     .Where(x => x.Title.Contains(searchKeyword))
-                     .ToList();
+            //Queryable yuku db'ye birakir.
+            IQueryable<Account> accountsQuery = _dbContext.Accounts.AsQueryable(); //Veritabaniyla bir kopru olusturmayi saglar, verdigimiz islemleri sirasiyla veritabani uzerinde gerceklestirir.
+
+            if(!string.IsNullOrEmpty(searchKeyword))
+            {
+                accountsQuery = accountsQuery.Where(x => x.Title.Contains(searchKeyword) || x.UserName.Contains(searchKeyword));
+            }
+            
+            accountsQuery = isAscending? accountsQuery.OrderBy(x => x.Title) : accountsQuery.OrderByDescending(x => x.Title);
+
+            var accounts = accountsQuery.ToList(); //islemleri birlestirip db'ye gondermis gibi dusunebilirsin.
+
+            #region Query olusturmadan once
+            //var accounts = string.IsNullOrEmpty(searchKeyword)
+            //    ? 
+            //    _dbContext
+            //        .Accounts
+            //        .ToList()
+            //    : 
+            //    _dbContext
+            //        .Accounts
+            //         .Where(x => x.Title.Contains(searchKeyword) || x.UserName.Contains(searchKeyword)) //bu gibi sorgularda 2 syi birlikte aradigimizda birinin indexlenmesi digeri indexlenmediyse performansi artttirmayi saglamayacaktir.
+            //         //Bu nedenle composite keys kullaniriz.
+            //         .ToList();
+            #endregion
 
             var accountDtos = accounts.Select(account => AccountDto.MapFromAccount(account)); //Automapper performans yiyor?
+
   
             return Ok(accountDtos);
         }

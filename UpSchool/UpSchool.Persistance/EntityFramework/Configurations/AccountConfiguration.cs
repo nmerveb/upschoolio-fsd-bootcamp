@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Security.Cryptography.X509Certificates;
 using UpSchool.Domain.Entities;
 
 namespace UpSchool.Persistance.EntityFramework.Configurations
@@ -15,6 +16,9 @@ namespace UpSchool.Persistance.EntityFramework.Configurations
             //Title
             builder.Property(x => x.Title).IsRequired();  
             builder.Property(x => x.Title).HasMaxLength(150);
+            //builder.HasIndex(x => x.Title);  //Bu alanin indexlenmesini saglar. cokca sorgularda kullanacagimiz alanlari indexleriz genelde.
+
+            builder.HasIndex(x => new { x.Title, x.UserName }); //Birden fazla ozellikle search ediliyorsa iki ozelligi birlikte indexleriz.
 
             //UserName
             builder.Property(x => x.UserName).IsRequired();  
