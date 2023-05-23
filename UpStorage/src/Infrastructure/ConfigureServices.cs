@@ -1,5 +1,8 @@
 ﻿using Application.Common.Interfaces;
+using Domain.Identity;
 using Infrastructure.Persistence.Contexts;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +19,27 @@ namespace Infrastructure
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());//IAppli.. cagrildiginda az once contexte ekledigin appcontext i cagir.
+
+            services.AddDbContext<IdentityContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            services.AddIdentity<User, Role>(options =>
+            {
+                //User Password Options
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+
+                //User UserName and Email options
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+$";
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityContext>()
+            .AddDefaultTokenProviders();
+
+            //Scoped Services  -- req boyunca ayni seyin kullanilmasi
+            services.AddScoped<IExcelService, ExcelManager>();
 
             return services;
         }
