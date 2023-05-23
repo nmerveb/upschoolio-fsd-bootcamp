@@ -1,10 +1,11 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models.Excel;
 using Domain.Common;
+using MediatR;
 
 namespace Application.Features.Excel.Commands.ReadCountries
 {
-    public class ExcelReadCountriesCommandHandler
+    public class ExcelReadCountriesCommandHandler:IRequestHandler<ExcelReadCountriesCommand, Response<int>>
     {
         private readonly IExcelService _excelService;
         private readonly IApplicationDbContext _applicationDbContext;
