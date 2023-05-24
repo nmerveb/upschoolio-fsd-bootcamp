@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(opt =>  //Controller base uzerinden tureyen her classa ekler 
 {
-    opt.Filters.Add<ValidationFilter>();
+   // opt.Filters.Add<ValidationFilter>();
 });
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
