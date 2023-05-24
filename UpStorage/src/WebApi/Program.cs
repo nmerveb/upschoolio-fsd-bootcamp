@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(opt =>  //Controller base uzerinden tureyen her classa ekler 
 {
+    opt.Filters.Add<GlobalExceptionFilter>();
    // opt.Filters.Add<ValidationFilter>();
 });
 
