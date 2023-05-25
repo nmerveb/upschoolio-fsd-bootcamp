@@ -1,4 +1,5 @@
 using Application;
+using Domain.Settings;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
@@ -13,6 +14,8 @@ builder.Services.AddControllers(opt =>  //Controller base uzerinden tureyen her 
     opt.Filters.Add<GlobalExceptionFilter>();
    // opt.Filters.Add<ValidationFilter>();
 });
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 

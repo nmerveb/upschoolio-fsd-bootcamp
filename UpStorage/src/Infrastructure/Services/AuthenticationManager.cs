@@ -12,6 +12,7 @@ namespace Infrastructure.Services
     {
         private readonly UserManager<User> _userManager;
 
+
         public AuthenticationManager(UserManager<User> userManager)
         {
             _userManager = userManager;
@@ -31,6 +32,7 @@ namespace Infrastructure.Services
 
                 throw new ValidationException(failures);
             }
+
 
             return user.Id;
         }
