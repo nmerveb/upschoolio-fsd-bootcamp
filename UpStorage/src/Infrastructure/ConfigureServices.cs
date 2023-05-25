@@ -40,6 +40,7 @@ namespace Infrastructure
 
             //Scoped Services  -- req boyunca ayni seyin kullanilmasi
             services.AddScoped<IExcelService, ExcelManager>();
+            services.AddScoped<IAuthenticationService, AuthenticationManager>();
 
             return services;
         }
