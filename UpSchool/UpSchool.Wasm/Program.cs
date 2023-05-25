@@ -13,6 +13,8 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 var titanicFluteApiUrl = builder.Configuration.GetConnectionString("TitanicFlute");
 var apiUrl = builder.Configuration.GetSection("ApiUrl").Value!;
 
+var signalRUrl = builder.Configuration.GetSection("SignalRUrl").Value!;
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
@@ -24,7 +26,7 @@ builder.Services.AddBlazoredToast();
 //Dependecy Injection IToasterService proje icinde cagrilacaginda ToasterService'in cagrilmasini saglar.
 builder.Services.AddScoped<IToasterService, BlazoredToastService>();
 
-builder.Services.AddSingleton<IUrlHelperService>(new UrlHelperService(titanicFluteApiUrl));
+builder.Services.AddSingleton<IUrlHelperService>(new UrlHelperService(titanicFluteApiUrl, signalRUrl));
 
 //Local Storage paketi icin 
 builder.Services.AddBlazoredLocalStorage(config =>

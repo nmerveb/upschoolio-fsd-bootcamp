@@ -1,4 +1,4 @@
-﻿@page "/accounts/add"
+﻿@page "/accounts/add/{ConnectionId}"
 
 @using UpSchool.Domain.Dtos;
 @using UpSchool.Domain.Services;
@@ -62,6 +62,9 @@
 </div>
 
 @code {
+
+    [Parameter]
+    public string ConnectionId { get; set; }
     private AccountAddDto addDto = new AccountAddDto();
 
     private void OnCancel()
@@ -77,6 +80,7 @@
     private async Task SendForm()
     {
         addDto.Password = StringHelper.Base64Encode(addDto.Password);
+        addDto.ConnectionId = ConnectionId;
 
         var response = await HttpClient.PostAsJsonAsync("Accounts", addDto); // api'da bulunan post islemine duser
 

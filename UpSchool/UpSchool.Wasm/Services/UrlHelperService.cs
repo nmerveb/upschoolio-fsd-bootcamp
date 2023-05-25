@@ -6,9 +6,12 @@ namespace UpSchool.Wasm.Services
     {
         public string ApiUrl { get; }
 
-        public UrlHelperService(string apiUrl)
+        public string SignalRUrl { get; }
+
+        public UrlHelperService(string apiUrl, string signalRUrl)
         {
             ApiUrl = apiUrl; // yukarida sadece get fonk yazildigi icin  tek sefer set edilebilir.
+            SignalRUrl = signalRUrl;
         }
     }
 }
