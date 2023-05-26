@@ -1,10 +1,12 @@
 ﻿using Application.Features.Cities.Commands.Add;
 using Application.Features.Cities.Queries.GetAll;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [ValidationFilter]  //Attributelar bu sekilde tanimlanir 
     public class CitiesController : ApiControllerBase
     {
