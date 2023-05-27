@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Wasm", "UpSchool.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.WebApi", "UpSchool.WebApi\UpSchool.WebApi.csproj", "{9DE8C11D-A706-44E3-BBE2-E6556DCB7FBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Persistance", "UpSchool.Persistance\UpSchool.Persistance.csproj", "{3840F2A0-0B3E-49DA-9A95-03EE53FDE356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpSchool.Persistance", "UpSchool.Persistance\UpSchool.Persistance.csproj", "{3840F2A0-0B3E-49DA-9A95-03EE53FDE356}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpSchool.Selenium.Console.Client", "UpSchool.Selenium.Console.Client\UpSchool.Selenium.Console.Client.csproj", "{D72C6BE1-4940-4EB2-9A24-3E06B7926375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3840F2A0-0B3E-49DA-9A95-03EE53FDE356}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3840F2A0-0B3E-49DA-9A95-03EE53FDE356}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3840F2A0-0B3E-49DA-9A95-03EE53FDE356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D72C6BE1-4940-4EB2-9A24-3E06B7926375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D72C6BE1-4940-4EB2-9A24-3E06B7926375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D72C6BE1-4940-4EB2-9A24-3E06B7926375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D72C6BE1-4940-4EB2-9A24-3E06B7926375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
