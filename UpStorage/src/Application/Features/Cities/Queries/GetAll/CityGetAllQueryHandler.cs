@@ -37,7 +37,7 @@ namespace Application.Features.Cities.Queries.GetAll
 
             if(request.IsDeleted.HasValue) dbquery = dbquery.Where(x => x.IsDeleted == request.IsDeleted.Value); //Hem silinmis hem silinmemis valuelari istedigimizde calismaz.
 
-            //dbquery = dbquery.Include(x => x.Country);
+            dbquery = dbquery.Include(x => x.Country);
             var cities = await dbquery
                 .Take(2000)
                 .Select(x => MapToDto(x))
