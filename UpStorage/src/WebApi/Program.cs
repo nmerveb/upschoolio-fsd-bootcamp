@@ -1,4 +1,5 @@
 using Application;
+using Application.Common.Interfaces;
 using Domain.Settings;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using WebApi.Filters;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +81,10 @@ builder.Services.AddAuthentication(options =>
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
                     };
                 });
+
+builder.Services.AddSignalR();
+builder.Services.AddScoped<IAccountHubService, AccountHubManager>();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
